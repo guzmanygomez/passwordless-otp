@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HelloWorld",
-    "slug": "expo-template-default",
+    "name": "passwordless-otp-auth",
+    "slug": "passwordless-otp-auth",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,13 +9,15 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sandyzhang2025.passwordlessotpauth"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sandyzhang2025.passwordlessotpauth"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +38,18 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3762de1e-a761-48b1-a99b-6db713e49240"
+      }
+    },
+    "owner": "sandyzhang2025",
+    "updates": {
+      "url": "https://u.expo.dev/3762de1e-a761-48b1-a99b-6db713e49240"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
