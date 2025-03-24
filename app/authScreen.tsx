@@ -1,4 +1,5 @@
 import { useCognitoAuth } from "@/hooks/useCognitoAuth";
+import uuid from 'react-native-uuid';
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import React, { useState } from "react";
 import { Alert, Button, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
@@ -32,22 +33,26 @@ export default function AuthScreen() {
       Alert.alert("All fields are required.");
       return;
     }
-
+  
+    const username = uuid.v4(); // <- this must NOT be an email or phone
+  
     const attributes = [
       new CognitoUserAttribute({ Name: "name", Value: name }),
       new CognitoUserAttribute({ Name: "email", Value: email }),
-      new CognitoUserAttribute({ Name: "phone_number", Value: phoneNumber }),
+      new CognitoUserAttribute({ Name: "phone_number", Value: phoneNumber })
     ];
-
+  
     //@ts-ignore
-    userPool.signUp(phoneNumber, "DummyPassword123!", attributes, null, (err, result) => {
+    userPool.signUp(username, "DummyPassword123!", attributes, null, (err, result) => {
       if (err) {
         Alert.alert("❌ Sign-up error", err.message);
         return;
       }
+  
+      // ✅ Use alias (phoneNumber or email) to sign in
       initiateAuth(phoneNumber, (msg) => Alert.alert("Auth failed", msg));
     });
-  };
+  }; 
 
   const startSignIn = () => {
     if (!phoneNumber) {
